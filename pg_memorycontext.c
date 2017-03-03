@@ -82,7 +82,17 @@ PG_FUNCTION_INFO_V1(pg_memorycontext);
 
 Datum pg_memorycontext(PG_FUNCTION_ARGS)
 {
+    FuncCallContext *funcctx;
+    int             call_cntr;
+    int             max_calls;
+    TupleDesc       tupdesc;
+    AttInMetadata   *attinmeta;
 
+    if (SRF_IS_FIRSTCALL())
+    {
+        
+
+    }
     
 }
 
