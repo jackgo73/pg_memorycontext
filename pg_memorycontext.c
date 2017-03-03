@@ -60,8 +60,23 @@ void _PG_init(void);
 void _PG_fini(void);
 Datum pg_memorycontext(PG_FUNCTION_ARGS);
 void MxtCacheInitialize(void);
+void MxtCacheInsert(char *name, long totalspace);
+long MxtAllocSetStats(MemoryContext context);
+void MxtMemoryContextStats(MemoryContext context);
+void MxtMemoryContextStatsInternal(MemoryContext context);
+
+static HTAB *MxtCache;
 
 
+void _PG_init(void)
+{
+
+}
+
+void _PG_fini(void)
+{
+
+}
 
 
 
