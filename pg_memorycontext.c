@@ -78,7 +78,13 @@ void _PG_fini(void)
 
 }
 
+PG_FUNCTION_INFO_V1(pg_memorycontext);
 
+Datum pg_memorycontext(PG_FUNCTION_ARGS)
+{
+
+    
+}
 
 
 
