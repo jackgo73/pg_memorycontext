@@ -90,6 +90,26 @@ Datum pg_memorycontext(PG_FUNCTION_ARGS)
 
     if (SRF_IS_FIRSTCALL())
     {
+        MemoryContext   oldcontext;
+        long            mxt_number;
+        HASH_SEQ_STATUS *mxt_status;
+
+        funcctx = SRF_FIRSTCALL_INIT();
+
+        oldcontext = MemoryContextSwitchTo(funcctx->multi_call_memory_ctx);
+
+        MxtCacheInitialize();
+        MxtMemoryContextStats(TopMemoryContext);
+
+        mxt_number = hash_get_num_entries(MxtCache);
+        funcctx->max_calls = mxt_number;
+
+        mxt_status = (HASH_SEQ_STATUS*)palloc(sizeof(HASH_SEQ_STATUS));
+        hash_seq_init(mxt_status, MxtCache);
+        funcctx->user_fctx = (void*)mxt_status;
+
+        
+        
         
 
     }
