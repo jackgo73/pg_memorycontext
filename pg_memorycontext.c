@@ -116,11 +116,14 @@ Datum pg_memorycontext(PG_FUNCTION_ARGS)
                         "that cannot accept type record")));
         }
 
-        
-        
-        
+        attinmeta = TupleDescGetAttInMetadata(tupdesc);
+        funcctx->attinmeta = attinmeta;
 
+        MemoryContextSwitchTo(oldcontext);
     }
+
+    
+
     
 }
 
