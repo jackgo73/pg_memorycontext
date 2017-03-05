@@ -170,7 +170,7 @@ Datum pg_memorycontext(PG_FUNCTION_ARGS)
         if (hash_seq_search((HASH_SEQ_STATUS*)funcctx->user_fctx))
         {
             elog(ERROR, 
-                "pg_memorycontext: leaked scan hash table")
+                "pg_memorycontext: leaked scan hash table");
         }
         SRF_RETURN_DONE(funcctx);
     }
@@ -193,7 +193,7 @@ void MxtCacheInitialize(void)
     mxt_ctl.hash = string_hash;
     mxt_ctl.hcxt = CurrentMemoryContext;
     MxtCache = hash_create("pg_memorycontext hash table", MXT_NAME_NUMBER,
-                            &mxt_ctl, HASH_ELEM | HASH_FUNCTION| HASH_CONTEXT);
+                            &mxt_ctl, HASH_ELEM | HASH_FUNCTION | HASH_CONTEXT);
 
     if (NULL == MxtCache)
     {
@@ -210,16 +210,15 @@ void MxtCacheInsert(char * name,long totalspace)
 
     mxt_stat = (MxtStat*)hash_search(MxtCache, (void*)name, HASH_ENTER, &found);
 
-    if(found)
-    {
-        mxt_stat->cnt += 1;
-        mxt_stat->total_size += totalspace;  
-    }
-    else
+    if(!found)
     {
         mxt_stat->cnt = 0;
-        mxt_stat->total_size = 0;
+        mxt_stat->total_size = 0 ;  
     }
+    
+    mxt_stat->cnt += 1;
+    mxt_stat->total_size += totalspace;
+    
 }
 
 long MxtAllocSetStats(MemoryContext context)
