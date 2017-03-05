@@ -18,7 +18,8 @@ PG_MODULE_MAGIC;
 
 typedef struct AllocBlockData *AllocBlock;
 typedef struct AllocChunkData *AllocChunk;
-typedef AllocSetContext *AllocSet;
+typedef struct AllocSetContext *AllocSet;
+
 
 typedef void *AllocPointer;
 
@@ -54,6 +55,8 @@ typedef struct AllocSetContext
 	Size		allocChunkLimit;
 	AllocBlock	keeper;
 } AllocSetContext;
+
+
 
 
 void _PG_init(void);

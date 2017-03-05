@@ -7,7 +7,7 @@ EXTENSION = pg_memorycontext
 DATA = pg_memorycontext--1.0.sql pg_memorycontext--unpackaged--1.0.sql
 
 ifdef USE_PGXS
-PG_CONFIG = pg_memorycontext
+PG_CONFIG = pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)
 include $(PGXS)
 else
