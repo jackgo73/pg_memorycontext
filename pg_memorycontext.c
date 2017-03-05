@@ -200,6 +200,40 @@ void MxtCacheInitialize(void)
 }
 
 
+void MxtCacheInsert(char * name,long totalspace)
+{
+    MxtStat *mxt_stat;
+    bool    found;
+
+    mxt_stat = (MxtStat*)hash_search(MxtCache, (void*)name, HASH_ENTER, &found);
+
+    if(found)
+    {
+        mxt_stat->cnt += 1;
+        mxt_stat->total_size += totalspace;  
+    }
+    else
+    {
+        mxt_stat->cnt = 0;
+        mxt_stat->total_size = 0;
+    }
+}
+
+long MxtAllocSetStats(MemoryContext context)
+{
+    AllocSet    set = (AllocSet)context;
+    long        totalspace = 0;
+    AllocBlock  block;
+
+    for (block = set->blocks; block != NULL; block = block->next)
+    {
+        totalspace += block->endptr - ((char*)block);
+    }
+
+    MxtCacheInsert(set->header.name, totalspace);
+
+    return totalspace;
+}
 
 
 
