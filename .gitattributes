@@ -1,0 +1,4 @@
+pg_memorycontext*.sql linguist-vendored=true
+*.h linguist-language=C
+*.c linguist-language=C
+*.spec linguist-vendored=true
