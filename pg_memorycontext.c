@@ -128,7 +128,35 @@ Datum pg_memorycontext(PG_FUNCTION_ARGS)
     max_calls = funcctx->max_calls;
     attinmeta = funcctx->attinmeta;
 
-    
+    if (call_cntr < max_calls)
+    {
+        char                **values;
+        HeapTuple           tuple;
+        Datum               result = 0;
+        MxtStat             *mxt_stat;
+        HASH_SEQ_STATUS     *user_mxt_status;
+
+        user_mxt_status = (HASH_SEQ_STATUS*)funcctx->user_fctx;
+        mxt_stat = (MxtStat*)hash_seq_search(user_mxt_status);
+
+        if (mxt_stat)
+        {
+            /* int take up 12 char at most */
+            values = (char**)palloc(3 * sizeof(char*));
+            values[0] = (char*)palloc(MXT_NAME_LENGTH * sizeof(char));
+            values[1] = (char*)palloc(16 * sizeof(char));
+            values[2] = (char*)palloc(16 * sizeof(char));
+
+            snprintf(values[0], MXT_NAME_LENGTH, "%s", mxt_stat->name);
+            snprintf(values[1], 16, "%d", mxt_stat->cnt);
+            snprintf(values[2], 16, "%ld", mxt_stat->total_size);
+
+            
+        }
+
+
+
+    }
 
     
 }
