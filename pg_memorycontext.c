@@ -163,13 +163,41 @@ Datum pg_memorycontext(PG_FUNCTION_ARGS)
     }
     else
     {
-        
+        /* finish the whole seq_search */
+        if (hash_seq_search((HASH_SEQ_STATUS*)funcctx->user_fctx)
+        {
+            ereport(ERROR, 
+                "pg_memorycontext: leaked scan hash table")
+        }
+        SRF_RETURN_DONE(funcctx);
     }
-
-    
 }
 
 
+void MxtCacheInitialize(void)
+{
+    HASHCTL mxt_ctl;
+
+    MemSet(&mxt_ctl, 0, sizeof(mxt_ctl));
+
+    /*
+     * create memorycontext hashtable under SRF multi-call context
+     *
+     */
+
+    mxt_ctl.keysize = MXT_NAME_LENGTH;
+    mxt_ctl.entrysize = sizeof(MxtStat);
+    mxt_ctl.hash = string_hash;
+    mxt_ctl.hcxt = CurrentMemoryContext;
+    MxtCache = hash_create("pg_memorycontext hash table", MXT_NAME_NUMBER,
+                            &mxt_ctl, HASH_ELEM | HASH_FUNCTION| HASH_CONTEXT);
+
+    if (NULL == MxtCache)
+    {
+        ereport(ERROR, 
+            "pg_memorycontext: can not create pg_memorycontext hash table");
+    }
+}
 
 
 
