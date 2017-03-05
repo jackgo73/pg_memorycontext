@@ -235,8 +235,10 @@ long MxtAllocSetStats(MemoryContext context)
     return totalspace;
 }
 
-
-
+void MxtMemoryContextStats(MemoryContext context)
+{
+    MxtMemoryContextStatsInternal(context);
+}
 
 
 
