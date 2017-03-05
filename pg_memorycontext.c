@@ -167,9 +167,9 @@ Datum pg_memorycontext(PG_FUNCTION_ARGS)
     else
     {
         /* finish the whole seq_search */
-        if (hash_seq_search((HASH_SEQ_STATUS*)funcctx->user_fctx)
+        if (hash_seq_search((HASH_SEQ_STATUS*)funcctx->user_fctx))
         {
-            ereport(ERROR, 
+            elog(ERROR, 
                 "pg_memorycontext: leaked scan hash table")
         }
         SRF_RETURN_DONE(funcctx);
@@ -197,7 +197,7 @@ void MxtCacheInitialize(void)
 
     if (NULL == MxtCache)
     {
-        ereport(ERROR, 
+        elog(ERROR, 
             "pg_memorycontext: can not create pg_memorycontext hash table");
     }
 }
