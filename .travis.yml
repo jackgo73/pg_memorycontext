@@ -1,0 +1,19 @@
+os:
+  - linux
+
+sudo: required
+dist: trusty
+
+language: c
+
+compiler:
+  - clang
+  - gcc
+
+before_install:
+  - sudo sh ./travis/apt.postgresql.org.sh
+
+env:
+  - PGVERSION=9.6 CHECK_CODE=true
+
+script: bash ./travis/pg-travis-test.sh
