@@ -1,0 +1,19 @@
+# pg_memorycontext extension
+comment = 'examine memory context'
+default_version = '1.0'
+module_pathname = '$libdir/pg_memorycontext'
+relocatable = true
+
+
+
+
+
+
+
+
+
+
+
+
+
+

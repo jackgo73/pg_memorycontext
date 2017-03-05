@@ -241,6 +241,24 @@ void MxtMemoryContextStats(MemoryContext context)
 }
 
 
+void MxtMemoryContextStatsInternal(MemoryContext context)
+{
+    MemoryContext child;
+
+    AssertArg(MemoryContextIsValid(context));
+
+    MxtAllocSetStats(context);
+
+    for (child = context->firstchild; child != NULL; child = child->nextchild)
+    {
+        MxtMemoryContextStatsInternal(child);
+    }
+}
+
+
+
+
+
 
 
 
