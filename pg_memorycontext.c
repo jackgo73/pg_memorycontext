@@ -151,11 +151,19 @@ Datum pg_memorycontext(PG_FUNCTION_ARGS)
             snprintf(values[1], 16, "%d", mxt_stat->cnt);
             snprintf(values[2], 16, "%ld", mxt_stat->total_size);
 
-            
+            tuple = BuildTupleFromCStrings(attinmeta, values);
+            result = HeapTupleGetDatum(tuple);
+
+            pfree(values[0]);
+            pfree(values[1]);
+            pfree(values[2]);
+            pfree(values);       
         }
-
-
-
+        SRF_RETURN_NEXT(funcctx, result);
+    }
+    else
+    {
+        
     }
 
     
