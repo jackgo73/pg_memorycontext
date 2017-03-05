@@ -108,6 +108,14 @@ Datum pg_memorycontext(PG_FUNCTION_ARGS)
         hash_seq_init(mxt_status, MxtCache);
         funcctx->user_fctx = (void*)mxt_status;
 
+        if (get_call_result_type(fcinfo, NULL, &tupdesc) != TYPEFUNC_COMPOSITE)
+        {
+            ereport(ERROR,
+                (errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
+                    errmsg("function returning record called in context"
+                        "that cannot accept type record")));
+        }
+
         
         
         
