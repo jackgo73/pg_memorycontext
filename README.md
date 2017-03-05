@@ -1,9 +1,10 @@
 # pg_memorycontext
 
 The pg_memorycontext module provides views to get postgresql memory context histogram.
+
 The extension is compatible with PostgreSQL 9.2+.
 ## Overview
-After loading the pg_memorycontext module， a view named pg_memorycontext is built.You can get memorycontext statistics by viewing views."totalsize" means the total size of same memorycontext name and "count" means the times it appearance.
+After loading the pg_memorycontext module， a view named pg_memorycontext is built.You can get memorycontext statistics by selecting views."totalsize" means the total size of same memorycontext name and "count" means the times it appearance.
 For example:
 ```plpgsql
 postgres=# select * from pg_memorycontext;
