@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mutex73/pg_memorycontext.svg?branch=master)](https://travis-ci.org/mutex73/pg_memorycontext)
+
 # pg_memorycontext
 
 The pg_memorycontext module provides views to get postgresql memory context histogram.
