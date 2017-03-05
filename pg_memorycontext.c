@@ -122,6 +122,12 @@ Datum pg_memorycontext(PG_FUNCTION_ARGS)
         MemoryContextSwitchTo(oldcontext);
     }
 
+    funcctx = SRF_PERCALL_SETUP();
+
+    call_cntr = funcctx->call_cntr;
+    max_calls = funcctx->max_calls;
+    attinmeta = funcctx->attinmeta;
+
     
 
     
