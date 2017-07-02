@@ -48,3 +48,11 @@ It is essential to restart the PostgreSQL instance. After that, execute the foll
 ```plpgsql
 CREATE EXTENSION pg_memorycontext;
 ```
+
+## Feedback
+
+Do not hesitate to post your issues, questions and new ideas at the issues page.
+
+## Authors
+
+Jack Geller <jackgo73@outlook.com> ?, China
