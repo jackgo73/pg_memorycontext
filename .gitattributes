@@ -1,4 +1,4 @@
-*.sql linguist-vendored=true
+*.sql linguist-language=C
 *.h linguist-language=C
 *.c linguist-language=C
-*.spec linguist-vendored=true
+*.spec linguist-language=C
