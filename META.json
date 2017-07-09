@@ -1,0 +1,38 @@
+{
+   "name": "pg_memorycontext",
+   "abstract": "memory context tool",
+   "description": "The pg_memorycontext module create views to get postgresql memory context histogram.",
+   "version": "1.0.1",
+   "maintainer": [
+      "Jack Geller <jackgo73@outlook.com>"
+   ],
+   "license": "postgresql",
+   "resources": {
+      "bugtracker": {
+         "web": "https://github.com/mutex73/pg_memorycontext/issues"
+      },
+      "repository": {
+        "url":  "git@github.com:mutex73/pg_memorycontext.git",
+        "web":  "https://github.com/mutex73/pg_memorycontext.git",
+        "type": "git"
+      }
+   },
+   "generated_by": "Jack Geller",
+   "provides": {
+       "pg_pathman": {
+           "file": "pg_memorycontext--1.0.sql",
+           "docfile": "README.md",
+           "version": "1.0.1",
+           "abstract": "memory context tool"
+      }
+   },
+   "meta-spec": {
+      "version": "1.0.0",
+      "url": "http://pgxn.org/meta/spec.txt"
+   },
+   "tags": [
+      "memory",
+      "memorycontext",
+      "histogram"
+   ]
+}
