@@ -12,7 +12,7 @@
          "web": "https://github.com/mutex73/pg_memorycontext/issues"
       },
       "repository": {
-        "url":  "git@github.com:mutex73/pg_memorycontext.git",
+        "url":  "git://github.com:mutex73/pg_memorycontext.git",
         "web":  "https://github.com/mutex73/pg_memorycontext.git",
         "type": "git"
       }
