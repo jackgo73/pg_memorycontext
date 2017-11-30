@@ -1,17 +1,17 @@
 [![Build Status](https://travis-ci.org/mutex73/pg_memorycontext.svg?branch=master)](https://travis-ci.org/mutex73/pg_memorycontext)
 
 # pg_memorycontext
+ 
 
-The pg_memorycontext module create views to get postgresql memory context histogram.
-
+ 插件提供了postgresql的内存上下文直方图。
+ 
 The extension is compatible with PostgreSQL 9.2+.
 ## Overview
-After loading the pg_memorycontext module， a view named pg_memorycontext is created.You can get memorycontext info from the view.
-
-| column | note | 
+插件安装后，在数据库中创建一个视图，视图含义：
+| 列名 | 含义 | 
 | --------- |------| 
-| totalsize | the total size(byte) of the memorycontext |
-| count |  the times it appearance. |
+| totalsize | the total size(byte) of the context |
+| count |  内存上下文树中该context出现的次数 |
 
 
 For example:
@@ -43,7 +43,7 @@ postgres=# select * from pg_memorycontext;
 ```
 ## Installation guide
 
-To install `pg_memorycontext`, execute this in the module's directory:
+To install `pg_memorycontext`, execute in the module's directory:
 ```shell
 make install USE_PGXS=1
 ```
@@ -62,4 +62,4 @@ Do not hesitate to post your issues, questions and new ideas at the issues page.
 
 ## Authors
 
-Jack Geller <jackgo73@outlook.com> ?, China
+Jack Gao <jackgo73@outlook.com> Huawei, China
