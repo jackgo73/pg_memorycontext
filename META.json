@@ -19,7 +19,7 @@
    },
    "generated_by": "jackgo",
    "provides": {
-       "pg_pathman": {
+       "pg_memorycontext": {
            "file": "pg_memorycontext--1.0.sql",
            "docfile": "README.md",
            "version": "1.0.1",
